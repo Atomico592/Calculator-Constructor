@@ -10,5 +10,11 @@
 
   &__inner-block {
     padding: 106px 56px 76px;
+    display: flex;
+    justify-content: space-between;
   }
+}
+
+.test {
+  cursor: grabbing;
 }

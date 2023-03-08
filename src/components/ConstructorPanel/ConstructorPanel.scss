@@ -1,0 +1,97 @@
+@import "src/scss/style";
+
+
+.constructor-panel {
+  width: 243px;
+  height: 448px;
+  border: 2px dashed $lightGrayColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $lightBlueColor;
+  }
+
+  &__inner-block {
+    text-align: center;
+
+    &-title {
+      color: $totalBlueColor;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      padding-bottom: 4px;
+      padding-top: 12px;
+    }
+
+    &-subtitle {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      color: #6B7280;
+      width: 106px;
+
+    }
+  }
+}
+
+.form_toggle {
+  display: inline-block;
+  overflow: hidden;
+  background-color: $totalGrayColor;
+  border-radius: 6px;
+  margin-bottom: 30px;
+
+  i {
+    padding-right: 12px;
+  }
+}
+
+.form_toggle-item {
+  float: left;
+  display: inline-block;
+}
+
+.form_toggle-item input[type=radio] {
+  display: none;
+}
+
+.form_toggle-item label {
+  display: inline-block;
+  padding: 8px 12px;
+  line-height: 34px;
+  border-right: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form_toggle .item-1 label {
+  background: $totalGrayColor;
+  border-radius: 6px;
+}
+
+.form_toggle .item-2 label {
+  background: #F3F4F6;
+  border-radius: 6px;
+}
+
+.form_toggle .item-1 input[type=radio]:checked + label {
+  background: $totalWhiteColor;
+  border: 1px solid $greyBorderColor;
+  border-radius: 5px;
+
+  path {
+    stroke: #5D5FEF;
+  }
+}
+
+.form_toggle .item-2 input[type=radio]:checked + label {
+  background: $totalWhiteColor;
+  border: 1px solid $greyBorderColor;
+  border-radius: 5px;
+
+  path {
+    stroke: #5D5FEF;
+  }
+}

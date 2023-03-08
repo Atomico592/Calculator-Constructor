@@ -7,7 +7,7 @@ const Sings = () => {
   return (
     <Palette width="240px" height="56px">
       {sings.map(item => (
-        <Button width="52px" height="48px" name={item} />
+        <Button width="52px" height="48px" name={item} key={item} />
       ))}
     </Palette>
   )
