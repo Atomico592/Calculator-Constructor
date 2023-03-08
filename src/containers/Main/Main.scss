@@ -1,6 +1,14 @@
+@import "src/scss/style";
+
 .main {
   width: 695px;
   height: 640px;
-  background-color: beige;
+  background-color: $totalWhiteColor;
   margin: 10% auto;
+  border: 1px solid gainsboro;
+  border-radius: 8px;
+
+  &__inner-block {
+    padding: 106px 56px 76px;
+  }
 }

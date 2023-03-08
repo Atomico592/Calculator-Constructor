@@ -1,0 +1,27 @@
+@import "src/scss/style";
+
+.button {
+  border: 1px solid $greyBorderColor;
+  border-radius: 6px;
+  background: $totalWhiteColor;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 15px;
+  color: $totalBlackColor;
+  margin-right: 8px;
+  margin-bottom: 8px;
+
+  &:hover {
+    border: 2px solid $totalBlueColor;
+  }
+
+  &:active {
+    background-color: $totalBlueColor;
+    color: white;
+  }
+}
+
+.style {
+  background-color: $totalBlueColor;
+  color: $totalWhiteColor;
+}
