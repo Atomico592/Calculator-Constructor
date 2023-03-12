@@ -9,9 +9,10 @@
   }
 
   &__content {
-    text-align: right;
+    float: right;
     font-weight: 800;
     font-size: 36px;
     line-height: 44px;
+    padding-right: 10px;
   }
 }
