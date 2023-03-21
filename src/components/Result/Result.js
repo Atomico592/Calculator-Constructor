@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import Palette from '../UI/Palette/Palette'
 import Button from '../UI/Button/Button'
 import { IDS } from '../../consts'
 import { StateContext } from '../StateProvider/StateProvider'

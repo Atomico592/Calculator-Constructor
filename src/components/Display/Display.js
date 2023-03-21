@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react'
-import './Display.scss'
 import { IDS } from '../../consts'
-import Palette from '../UI/Palette/Palette'
 import { StateContext } from '../StateProvider/StateProvider'
+import './Display.scss'
 
 const Display = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, shadow }) => {
   const { state, dispatch } = useContext(StateContext)

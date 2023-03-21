@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react'
-import './Main.scss'
 import ConstructorPanel from '../../components/ConstructorPanel/ConstructorPanel'
 import { IDS } from '../../consts'
 import Display from '../../components/Display/Display'
 import Sings from '../../components/Sings/Sings'
 import NumPad from '../../components/NumPad/NumPad'
 import Result from '../../components/Result/Result'
+import './Main.scss'
+import { Logger } from 'sass'
 
 const Main = () => {
   const [items, setItems] = useState([])
@@ -71,8 +72,10 @@ const Main = () => {
   }
 
   const deleteItem = e => {
-    console.log(e.target.className)
+    console.log(e.target.id)
   }
+
+  console.log(items)
 
   return (
     <div className="main">
