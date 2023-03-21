@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ConstructorPanel from '../../components/ConstructorPanel/ConstructorPanel'
 import { IDS } from '../../consts'
 import Display from '../../components/Display/Display'
@@ -6,13 +6,13 @@ import Sings from '../../components/Sings/Sings'
 import NumPad from '../../components/NumPad/NumPad'
 import Result from '../../components/Result/Result'
 import './Main.scss'
-import { Logger } from 'sass'
 
 const Main = () => {
   const [items, setItems] = useState([])
   const [runtime, setRuntime] = useState(true)
   const [dragble, setDragble] = useState(null)
   const [overId, setOverId] = useState(null)
+  const [activBtn, setActivBtn] = useState(true)
 
   const isDisplayDraggble = !items.includes(IDS.DISPLAY)
   const isNotNumPadDraggble = items.includes(IDS.NUMPAD)
@@ -23,6 +23,21 @@ const Main = () => {
 
   ref.dragble.current = dragble
   ref.overId.current = overId
+
+
+    console.log(runtime)
+  useEffect(() => {
+    if (!runtime) {
+      console.log(runtime)
+      setActivBtn(false)
+    } else {
+      setActivBtn(true)
+    }
+  }, [runtime])
+ 
+
+
+
 
   // Перенос элементов на д оску
   const dragStartHandler = e => {
@@ -88,24 +103,28 @@ const Main = () => {
                 onDragEnd={isDisplayDraggble ? onDragEnd : null}
                 draggable={isDisplayDraggble}
                 shadow={isDisplayDraggble ? null : 'none'}
+                disabled={activBtn}
               />
               <Sings
                 onDragStart={isNotNumSingsDraggble ? null : dragStartHandler}
                 onDragEnd={isNotNumSingsDraggble ? null : onDragEnd}
                 draggable={!isNotNumSingsDraggble}
                 shadow={isNotNumSingsDraggble ? 'none' : null}
+                disabled={activBtn}
               />
               <NumPad
                 onDragStart={isNotNumPadDraggble ? null : dragStartHandler}
                 onDragEnd={isNotNumPadDraggble ? null : onDragEnd}
                 draggable={!isNotNumPadDraggble}
                 shadow={isNotNumPadDraggble ? 'none' : null}
+                disabled={activBtn}
               />
               <Result
                 onDragStart={isNotNumResultDraggble ? null : dragStartHandler}
                 onDragEnd={isNotNumResultDraggble ? null : onDragEnd}
                 draggable={!isNotNumResultDraggble}
                 shadow={isNotNumResultDraggble ? 'none' : null}
+                disabled={activBtn}
               />
             </div>
           ) : null}
@@ -193,7 +212,7 @@ const Main = () => {
               if (id === IDS.NUMPAD) {
                 return (
                   <NumPad
-                   
+                    disabled={activBtn}
                     key={IDS.NUMPAD}
                     shadow={isNotNumPadDraggble ? 'none' : null}
                     draggable
@@ -211,6 +230,7 @@ const Main = () => {
                   <Sings
                     key={IDS.SINGS}
                     shadow={isNotNumSingsDraggble ? 'none' : null}
+                    disabled={activBtn}
                     draggable
                     onDragStart={dragStartOnBoard}
                     onDragOver={dragOverOnBoard}
@@ -224,6 +244,7 @@ const Main = () => {
                 return (
                   <Result
                     key={IDS.RESULT}
+                    disabled={activBtn}
                     shadow={isNotNumResultDraggble ? 'none' : null}
                     draggable
                     onDragStart={dragStartOnBoard}

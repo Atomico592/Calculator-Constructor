@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import Button from '../UI/Button/Button'
 import { IDS } from '../../consts'
 import { StateContext } from '../StateProvider/StateProvider'
-import "./Sings.scss"
+import './Sings.scss'
 
-const Sings = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onDrop, shadow }) => {
+const Sings = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onDrop, shadow, disabled }) => {
   const { state, dispatch } = useContext(StateContext)
   const sings = ['/', 'x', '-', '+']
 
@@ -26,7 +26,7 @@ const Sings = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onD
     
         <div>
         {sings.map(item => (
-          <Button width="52px" height="48px" name={item} key={item} onClick={() => clickHandler(item)} />
+          <Button width="52px" height="48px" name={item} key={item} onClick={() => clickHandler(item)} disabled={disabled}/>
         ))}
     
       </div>

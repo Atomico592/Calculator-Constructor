@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import Button from '../UI/Button/Button'
 import { IDS } from '../../consts'
 import { StateContext } from '../StateProvider/StateProvider'
-import "./Resilt.scss"
+import './Resilt.scss'
 
-const Result = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onDrop, shadow }) => {
+const Result = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onDrop, shadow, disabled }) => {
   const { state, dispatch } = useContext(StateContext)
   const showResult = () => {
     switch (state.sign) {
@@ -36,7 +36,7 @@ const Result = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, on
       className='result-wrapper'
       style={{ boxShadow: `${shadow}`}}
     >
-        <Button width="232px" height="64px" name="=" style="style" onClick={() => showResult()} />
+        <Button width="232px" height="64px" name="=" style="style" onClick={() => showResult()} disabled={disabled}/>
     </div>
   )
 }
