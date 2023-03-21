@@ -1,5 +1,17 @@
 @import "src/scss/style";
 
+.wrapper {
+  background: $totalWhiteColor;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.06), 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-bottom: 12px;
+  padding-top: 4px;
+  padding-left: 4px; 
+
+  width: 240px; 
+  height: 60px;
+}
+
 .display {
   &__inner-panel {
     border-radius: 6px;

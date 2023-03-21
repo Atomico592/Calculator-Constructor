@@ -3,6 +3,7 @@ import Palette from '../UI/Palette/Palette'
 import Button from '../UI/Button/Button'
 import { IDS } from '../../consts'
 import { StateContext } from '../StateProvider/StateProvider'
+import "./Resilt.scss"
 
 const Result = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onDrop, shadow }) => {
   const { state, dispatch } = useContext(StateContext)
@@ -33,10 +34,10 @@ const Result = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, on
       onDragEnd={onDragEnd}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
+      className='result-wrapper'
+      style={{ boxShadow: `${shadow}`}}
     >
-      <Palette width="240px" height="72px" shadow={shadow}>
         <Button width="232px" height="64px" name="=" style="style" onClick={() => showResult()} />
-      </Palette>
     </div>
   )
 }

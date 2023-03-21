@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './Main.scss'
 import ConstructorPanel from '../../components/ConstructorPanel/ConstructorPanel'
 import { IDS } from '../../consts'
@@ -13,12 +13,17 @@ const Main = () => {
   const [dragble, setDragble] = useState(null)
   const [overId, setOverId] = useState(null)
 
-  const isNotDisplayDraggble = items.includes(IDS.DISPLAY)
+  const isDisplayDraggble = !items.includes(IDS.DISPLAY)
   const isNotNumPadDraggble = items.includes(IDS.NUMPAD)
   const isNotNumSingsDraggble = items.includes(IDS.SINGS)
   const isNotNumResultDraggble = items.includes(IDS.RESULT)
 
-  // Перенос элементов на доску
+  const ref = { dragble: useRef(dragble), overId: useRef(overId) }
+
+  ref.dragble.current = dragble
+  ref.overId.current = overId
+
+  // Перенос элементов на д оску
   const dragStartHandler = e => {
     e.target.style.opacity = '0.5'
     setDragble(e.target.id)
@@ -51,19 +56,22 @@ const Main = () => {
   const dragEndOnBoard = e => {
     e.target.style.borderBottom = 'none'
   }
-  const dropAndChangeIds = e => {
-    const firstId = items.indexOf(dragble)
-    const secondId = items.indexOf(overId)
 
+  const dropAndChangeIds = e => {
+        console.log("Test")
     setItems(prev => {
-      const newState = [...prev]
-      // const changeIds = newState[firstId]
-      // newState[firstId] = newState[secondId]
-      // newState[secondId] = changeIds
-      newState[firstId] = prev[secondId]
-      newState[secondId] = prev[firstId]
-      return newState
+      const next = [...prev]
+      const firstId = prev.indexOf(ref.dragble.current)
+      const secondId = prev.indexOf(ref.overId.current)
+    
+      next[firstId] = prev[secondId]
+      next[secondId] = prev[firstId]
+      return next
     })
+  }
+
+  const deleteItem = e => {
+    console.log(e.target.className)
   }
 
   return (
@@ -73,10 +81,10 @@ const Main = () => {
           {runtime ? (
             <div>
               <Display
-                onDragStart={isNotDisplayDraggble ? null : dragStartHandler}
-                onDragEnd={isNotDisplayDraggble ? null : onDragEnd}
-                draggable={!isNotDisplayDraggble}
-                shadow={isNotDisplayDraggble ? 'none' : null}
+                onDragStart={isDisplayDraggble ? dragStartHandler : null}
+                onDragEnd={isDisplayDraggble ? onDragEnd : null}
+                draggable={isDisplayDraggble}
+                shadow={isDisplayDraggble ? null : 'none'}
               />
               <Sings
                 onDragStart={isNotNumSingsDraggble ? null : dragStartHandler}
@@ -172,7 +180,7 @@ const Main = () => {
                 return (
                   <Display
                     key={IDS.DISPLAY}
-                    shadow={isNotDisplayDraggble ? 'none' : null}
+                    shadow={isDisplayDraggble ? null : 'none'}
                     onDragStart={dragStartOnBoard}
                     draggable={items.indexOf(IDS.DISPLAY === 0)}
                     onDrop={dropAndChangeIds}
@@ -182,6 +190,7 @@ const Main = () => {
               if (id === IDS.NUMPAD) {
                 return (
                   <NumPad
+                   
                     key={IDS.NUMPAD}
                     shadow={isNotNumPadDraggble ? 'none' : null}
                     draggable
@@ -190,6 +199,7 @@ const Main = () => {
                     onDrop={dropAndChangeIds}
                     // onDragEnd={dragEndOnBoard}
                     onDragLeave={dragEndOnBoard}
+                    onDoubleClick={deleteItem}
                   />
                 )
               }

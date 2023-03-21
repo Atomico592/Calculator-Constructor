@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import Button from '../UI/Button/Button'
-import Palette from '../UI/Palette/Palette'
 import { IDS } from '../../consts'
 import { StateContext } from '../StateProvider/StateProvider'
+import "./Sings.scss"
 
 const Sings = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onDrop, shadow }) => {
   const { state, dispatch } = useContext(StateContext)
@@ -13,6 +13,7 @@ const Sings = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onD
   }
   return (
     <div
+      className="sings-wrapper"
       id={IDS.SINGS}
       onDragStart={onDragStart}
       onDragOver={onDragOver}
@@ -20,12 +21,15 @@ const Sings = ({ onDragStart, onDragOver, onDragEnd, onDragLeave, draggable, onD
       onDragLeave={onDragLeave}
       draggable={draggable}
       onDrop={onDrop}
+      style={{ boxShadow: `${shadow}`}}
     >
-      <Palette width="240px" height="56px" shadow={shadow}>
+    
+        <div>
         {sings.map(item => (
           <Button width="52px" height="48px" name={item} key={item} onClick={() => clickHandler(item)} />
         ))}
-      </Palette>
+    
+      </div>
     </div>
   )
 }
